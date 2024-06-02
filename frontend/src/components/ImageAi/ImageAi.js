@@ -5,7 +5,7 @@ const ImageAi = ({ image }) => {
         <div className={styles.container}>
             <img className={styles.img} src={image} alt="Generated img" />
             <a href={image} download="generated_image.png" className={styles.downloadBtn}>
-                Download
+                הורדה
             </a>
         </div>
     );
