@@ -7,13 +7,13 @@ const openAiheaders = {
 };
 
 export async function getImage(scene, imageType, words, comment, characters) {
-    const prompt = `Create me ${imageType} image with this scene: ${scene}.The characters of the image will be: ${characters}. Add to the image all of those objects: ${words}. Comments about the picture: ${comment}, Add good lightning.`;
+    const prompt = `Create a ${imageType} image with the following scene: ${scene}. The characters in the image will be: ${characters}. Include all of these objects: ${words}. Additional comments about the picture: ${comment}. Ensure the image has good lighting and maintains the specified ${imageType} style.`;
     const data = {
         model: "dall-e-3",
         prompt: prompt,
         n: 1,
         size: "1024x1024",
-    };
+    };    
 
     try {
         const response = await axios.post(DALLEUrl, data, { headers: openAiheaders });
