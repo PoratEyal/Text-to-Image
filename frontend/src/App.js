@@ -143,24 +143,12 @@ function App() {
               <option value="Woman">Woman</option>
             </select>
 
-            <select className={styles.select} value={item.action} onChange={(e) => handleActionChange(index, e.target.value)}>
-              <option disabled value="">Select Action</option>
-              <option value="Eating food">Eating food</option>
-              <option value="Sleeping">Sleeping</option>
-              <option value="Reading">Reading</option>
-              <option value="Exercising">Exercising</option>
-              <option value="Watching TV">Watching TV</option>
-              <option value="Cooking">Cooking</option>
-              <option value="Playing games">Playing games</option>
-              <option value="Working">Working</option>
-              <option value="Studying">Studying</option>
-              <option value="Cleaning">Cleaning</option>
-              <option value="Shopping">Shopping</option>
-              <option value="Gardening">Gardening</option>
-              <option value="Traveling">Traveling</option>
-              <option value="Socializing">Socializing</option>
-              <option value="Relaxing">Relaxing</option>
-            </select>
+            <input
+              placeholder='What the character does?'
+              className={styles.character_input}
+              value={item.action}
+              onChange={(e) => handleActionChange(index, e.target.value)}
+            />
           </div>
         ))}
 
