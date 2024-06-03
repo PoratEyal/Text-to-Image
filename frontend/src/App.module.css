@@ -178,8 +178,9 @@
 .btn_div{
   display: flex;
   justify-content: left;
-  align-items: center;
+  align-items: left;
   margin-top: 25px;
+  flex-direction: column;
 }
 
 .submit_btn{
@@ -198,6 +199,8 @@
   background-color: rgb(220, 21, 137);
   color: white;
   cursor: pointer;
+  width: fit-content;
+  margin-bottom: 10px;
 }
 .submit_btn label{
   cursor: pointer;

@@ -13,6 +13,7 @@ function App() {
   const [image4, setImage4] = useState(null);
 
   const [startLoading, setStartLoading] = useState(false)
+  const [counter, setCounter] = useState(0)
   
   const [selectedScene, setSelectedScene] = useState('');
   const [selectedType, setSelectedType] = useState('');
@@ -41,6 +42,7 @@ function App() {
 
   // create 4 images
   const getImages = async () => {
+    setCounter(prevCounter => prevCounter + 1);
     setImage1(null);
     setImage2(null);
     setImage3(null);
@@ -93,21 +95,20 @@ function App() {
           <label>Scene</label>
           <select className={styles.select} value={selectedScene} onChange={handleSceneChange}>
             <option disabled value="">Select a scene</option>
-            <option value="Living room">Living room</option>
+            <option value="Classroom">Classroom</option>
+            <option value="Kindergarten">Kindergarten</option>
+            <option value="Playground">Playground</option>
             <option value="Home">Home</option>
-            <option value="Garden">Garden</option>
             <option value="Kitchen">Kitchen</option>
+            <option value="Living room">Living room</option>
             <option value="Bedroom">Bedroom</option>
-            <option value="Office">Office</option>
-            <option value="Street">Street</option>
-            <option value="Mall">Mall</option>
-            <option value="Forest">Forest</option>
-            <option value="Cinema">Cinema</option>
-            <option value="Park">Park</option>
-            <option value="Library">Library</option>
+            <option value="Bathroom">Bathroom</option>
+            <option value="Store">Store</option>
+            <option value="Supermarket">Supermarket</option>
+            <option value="Nature">Nature</option>
             <option value="Beach">Beach</option>
-            <option value="School">School</option>
-            <option value="Restaurant">Restaurant</option>
+            <option value="Street">Street</option>
+            <option value="Clinic">Clinic</option>
           </select>
         </div>
 
@@ -135,12 +136,18 @@ function App() {
           <div className={styles.selectDiv} key={index}>
             <select className={styles.select} value={item.character} onChange={(e) => handleCharacterChange(index, e.target.value)}>
               <option disabled value="">Select Character</option>
-              <option value="Girl">Girl</option>
-              <option value="Boy">Boy</option>
-              <option value="Grandmother">Grandmother</option>
-              <option value="Grandfather">Grandfather</option>
               <option value="Man">Man</option>
               <option value="Woman">Woman</option>
+              <option value="Father">Father</option>
+              <option value="Mother">Mother</option>
+              <option value="Boy">Boy</option>
+              <option value="Girl">Girl</option>
+              <option value="Teen boy">Teen boy</option>
+              <option value="Teen girl">Teen girl</option>
+              <option value="Grandfather">Grandfather</option>
+              <option value="Grandmother">Grandmother</option>
+              <option value="Dog">Dog</option>
+              <option value="Cat">Cat</option>
             </select>
 
             <input
@@ -175,6 +182,11 @@ function App() {
           <label>Generate</label>
           <FaWandMagicSparkles></FaWandMagicSparkles>
         </button>
+        {counter > 0 &&
+          <div>
+            Amount of clicks: {counter}
+          </div>
+        }
       </div>
     </div>
 
