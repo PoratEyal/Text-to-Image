@@ -16,6 +16,7 @@
   justify-content: left;
   align-items: center;
   gap: 50px;
+  margin-top: 25px;
 }
 
 .select{
@@ -27,6 +28,18 @@
   background-color: rgb(244, 244, 244);
   margin-bottom: 10px;
   width: 250px;
+}
+
+.lang_div{
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+  position: absolute;
+  top: 15px;
+  left: 15px;
 }
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
