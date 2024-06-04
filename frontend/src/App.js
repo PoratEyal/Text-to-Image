@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styles from './App.module.css';
 import Loading from './components/Loading/Loading';
-import { getImage } from './services/openAiService';
+import { getImage, promptToImage } from './services/openAiService';
 import { FaWandMagicSparkles } from "react-icons/fa6";
 import ImageAi from './components/ImageAi/ImageAi';
 import { MdAddReaction } from "react-icons/md";
@@ -25,6 +25,9 @@ function App() {
   const [comment, setComment] = useState('')
   const [characters, setCharacters] = useState([]);
 
+  const [freeText, setFreeText] = useState(false);
+  const [freePrompt, setFreePrompt] = useState('')
+
   // characters functions
   const addCharacter = () => {
     setCharacters([...characters, { character: '', action: '' }]);
@@ -44,7 +47,37 @@ function App() {
 
   // - - - - - - - - - - - - - - - - - - - -
 
-  // create 4 images
+  // create 4 images from the open text
+  const getImageFreeText = async () => {
+    setCounter(prevCounter => prevCounter + 1);
+    setImage1(null);
+    setImage2(null);
+    setImage3(null);
+    setImage4(null);
+    console.log(freePrompt);
+    setStartLoading(true)
+
+    try {
+      const imageRequests = [
+        promptToImage(freePrompt),
+        promptToImage(freePrompt),
+        promptToImage(freePrompt),
+        promptToImage(freePrompt)
+      ];
+  
+      const responses = await Promise.all(imageRequests);
+      const images = responses.map(response => response.data);
+
+      setImage1(images[0]);
+      setImage2(images[1]);
+      setImage3(images[2]);
+      setImage4(images[3]);
+    } catch (error) {
+      console.error('Error fetching images:', error);
+    }
+  };
+
+  // create 4 images from the closed text
   const getImages = async () => {
     setCounter(prevCounter => prevCounter + 1);
     setImage1(null);
@@ -87,6 +120,10 @@ function App() {
     setWords(e.target.value);
   };
 
+  const handlePromptChange = (e) => {
+    setFreePrompt(e.target.value);
+  };
+
   const handleCommentChange = (e) => {
     setComment(e.target.value);
   };
@@ -95,10 +132,13 @@ function App() {
     i18n.changeLanguage(lng);
   };
 
+  const changePromptStyle = (e) => {
+    setFreeText(e.target.value === "true");
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.data_container}>
-
         <div className={styles.lang_div}>
           <div>
             <input defaultChecked type="radio" id="english" name="language" value="en" onChange={() => changeLanguage('en')}/>
@@ -114,89 +154,111 @@ function App() {
           </div>
         </div>
         
-        <div className={styles.selectDiv}>
-          <div className={styles.select1_div}>
+        <div className={styles.freeText}>
+          <div>
+            <input type="radio" name="promptStyle" value="false" checked={!freeText} onChange={changePromptStyle}/>
+            <label>{t('text.textClosed')}</label>
+          </div>
+          <div>
+            <input type="radio" name="promptStyle" value="true" checked={freeText} onChange={changePromptStyle}/>
+            <label>{t('text.textOpen')}</label>
+          </div>
+        </div>
+
+        {freeText? 
+          <div className={styles.free_text_div}>
             <label>{t('labels.scene')}</label>
-            <select 
-              className={styles.select} 
-              value={selectedScene} 
-              onChange={(e) => handleSceneChange(e.target.value)}
-            >
-              <option disabled value="">{t('options.selectScene')}</option>
-              {t('options.scenes', { returnObjects: true }).map(scene => (
-                <option key={scene} value={scene}>{scene}</option>
-              ))}
-            </select>
+            <textarea value={freePrompt} onChange={handlePromptChange} placeholder={t('text.writeYourScene')}></textarea>
           </div>
+        :
+          <div>
+            <div className={styles.selectDiv}>
+              <div className={styles.select1_div}>
+                <label>{t('labels.scene')}</label>
+                <select 
+                  className={styles.select} 
+                  value={selectedScene} 
+                  onChange={(e) => handleSceneChange(e.target.value)}
+                >
+                  <option disabled value="">{t('options.selectScene')}</option>
+                  {t('options.scenes', { returnObjects: true }).map(scene => (
+                    <option key={scene} value={scene}>{scene}</option>
+                  ))}
+                </select>
+              </div>
 
-          <div className={styles.select2}>
-            <label>{t(`labels.imageType`)}</label>
-            <select 
-              className={styles.select} 
-              value={selectedType} 
-              onChange={(e) => handleTypeChange(e.target.value)}
-            >
-              <option disabled value="">{t('options.selectType')}</option>
-              {t('options.types', { returnObjects: true }).map(type => (
-                <option key={type} value={type}>{type}</option>
-              ))}
-            </select>
-          </div>
-        </div>
-
-        <div className={styles.characters_div}>
-          <label>{t('labels.charactersInScene')}</label>
-          {Array.isArray(characters) && characters.map((item, index) => (
-            <div className={styles.selectDiv} key={index}>
-            <select 
-              className={styles.select} 
-              value={item.character} 
-              onChange={(e) => handleCharacterChange(index, e.target.value)}
-            >
-              <option disabled value="">{t('options.selectCharacter')}</option>
-              {t('options.characters', { returnObjects: true }).map(character => (
-                <option key={character} value={character}>{character}</option>
-              ))}
-            </select>
-
-              <input
-                placeholder={t('labels.whatCharacterDoes')}
-                className={styles.character_input}
-                value={item.action}
-                onChange={(e) => handleActionChange(index, e.target.value)}
-              />
+              <div className={styles.select2}>
+                <label>{t(`labels.imageType`)}</label>
+                <select 
+                  className={styles.select} 
+                  value={selectedType} 
+                  onChange={(e) => handleTypeChange(e.target.value)}
+                >
+                  <option disabled value="">{t('options.selectType')}</option>
+                  {t('options.types', { returnObjects: true }).map(type => (
+                    <option key={type} value={type}>{type}</option>
+                  ))}
+                </select>
+              </div>
             </div>
-          ))}
 
-          <button className={styles.add_characters_btn} onClick={addCharacter}>
-            <span>{t('buttons.addCharacter')}</span>
-            <MdAddReaction className={styles.add_icon}></MdAddReaction>
-          </button>
-        </div>
+            <div className={styles.characters_div}>
+              <label>{t('labels.charactersInScene')}</label>
+              {Array.isArray(characters) && characters.map((item, index) => (
+                <div className={styles.selectDiv} key={index}>
+                <select 
+                  className={styles.select} 
+                  value={item.character} 
+                  onChange={(e) => handleCharacterChange(index, e.target.value)}
+                >
+                  <option disabled value="">{t('options.selectCharacter')}</option>
+                  {t('options.characters', { returnObjects: true }).map(character => (
+                    <option key={character} value={character}>{character}</option>
+                  ))}
+                </select>
 
-        <div className={styles.text_div}>
-          <div className={styles.words_data_div}>
-            <label>{t('labels.words')}</label>
-            <textarea className={styles.words_textarea} value={words} onChange={handleWordsChange}></textarea>
+                  <input
+                    placeholder={t('labels.whatCharacterDoes')}
+                    className={styles.character_input}
+                    value={item.action}
+                    onChange={(e) => handleActionChange(index, e.target.value)}
+                  />
+                </div>
+              ))}
+
+              <button className={styles.add_characters_btn} onClick={addCharacter}>
+                <span>{t('buttons.addCharacter')}</span>
+                <MdAddReaction className={styles.add_icon}></MdAddReaction>
+              </button>
+            </div>
+
+            <div className={styles.text_div}>
+              <div className={styles.words_data_div}>
+                <label>{t('labels.words')}</label>
+                <textarea className={styles.words_textarea} value={words} onChange={handleWordsChange}></textarea>
+              </div>
+
+              <div className={styles.words_data_div}>
+                <label>{t('labels.comments')}</label>
+                <textarea className={styles.comment_textarea} value={comment} onChange={handleCommentChange}></textarea>
+              </div>
+            </div>    
           </div>
-
-          <div className={styles.words_data_div}>
-            <label>{t('labels.comments')}</label>
-            <textarea className={styles.comment_textarea} value={comment} onChange={handleCommentChange}></textarea>
-          </div>
-        </div>
+        }
         
         <div className={styles.btn_div}>
-          <button className={styles.submit_btn} onClick={getImages}>
+          <button className={styles.submit_btn} onClick={freeText ? getImageFreeText : getImages}>
             <label>{t('buttons.generateLabel')}</label>
             <FaWandMagicSparkles></FaWandMagicSparkles>
           </button>
+
           {counter > 0 &&
             <div>
               {t('labels.amountOfClicks')} {counter}
             </div>
           }
         </div>
+
       </div>
 
       {startLoading &&

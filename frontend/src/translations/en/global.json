@@ -1,64 +1,68 @@
 {
-    "labels": {
-      "scene": "Scene",
-      "imageType": "Image Type",
-      "charactersInScene": "Characters in the Scene",
-      "whatCharacterDoes": "What the character does?",
-      "words": "Words",
-      "comments": "Comments",
-      "generate": "Generate",
-      "amountOfClicks": "Amount of clicks:"
-    },
-    "options": {
-      "selectScene": "Select a scene",
-      "scenes": [
-        "Classroom",
-        "Kindergarten",
-        "Playground",
-        "Home",
-        "Kitchen",
-        "Living room",
-        "Bedroom",
-        "Bathroom",
-        "Store",
-        "Supermarket",
-        "Nature",
-        "Beach",
-        "Street",
-        "Clinic"
-      ],
-      "selectType": "Select a type",
-      "types": [
-        "Realistic",
-        "PIXAR",
-        "Cartoon",
-        "Black & White",
-        "Retro",
-        "Comic",
-        "Watercolor",
-        "Sketch",
-        "Abstract",
-        "Surreal"
-      ],
-      "selectCharacter": "Select Character",
-      "characters": [
-        "Man",
-        "Woman",
-        "Father",
-        "Mother",
-        "Boy",
-        "Girl",
-        "Teen boy",
-        "Teen girl",
-        "Grandfather",
-        "Grandmother",
-        "Dog",
-        "Cat"
-      ]
-    },
-    "buttons": {
-      "addCharacter": "Add Character",
-      "generateLabel": "Generate"
-    }
+  "labels": {
+    "scene": "Scene",
+    "imageType": "Image Type",
+    "charactersInScene": "Characters in the Scene",
+    "whatCharacterDoes": "What the character does?",
+    "words": "Words",
+    "comments": "Comments",
+    "generate": "Generate",
+    "amountOfClicks": "Amount of clicks:"
+  },
+  "options": {
+    "selectScene": "Select a scene",
+    "scenes": [
+      "Classroom",
+      "Kindergarten",
+      "Playground",
+      "Home",
+      "Kitchen",
+      "Living room",
+      "Bedroom",
+      "Bathroom",
+      "Store",
+      "Supermarket",
+      "Nature",
+      "Beach",
+      "Street",
+      "Clinic"
+    ],
+    "selectType": "Select a type",
+    "types": [
+      "Realistic",
+      "PIXAR",
+      "Cartoon",
+      "Black & White",
+      "Retro",
+      "Comic",
+      "Watercolor",
+      "Sketch",
+      "Abstract",
+      "Surreal"
+    ],
+    "selectCharacter": "Select Character",
+    "characters": [
+      "Man",
+      "Woman",
+      "Father",
+      "Mother",
+      "Boy",
+      "Girl",
+      "Teen boy",
+      "Teen girl",
+      "Grandfather",
+      "Grandmother",
+      "Dog",
+      "Cat"
+    ]
+  },
+  "buttons": {
+    "addCharacter": "Add Character",
+    "generateLabel": "Generate"
+  },
+  "text": {
+    "writeYourScene": "Write your scene here",
+    "textOpen": "Open Text",
+    "textClosed": "Closed Text"
   }
-  
+}
