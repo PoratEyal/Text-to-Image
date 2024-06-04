@@ -4,6 +4,7 @@ import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 import globalEn from './translations/en/global.json';
 import globalHeb from './translations/heb/global.json';
+import globalRus from './translations/rus/global.json';
 
 i18n
   .use(LanguageDetector)
@@ -15,6 +16,9 @@ i18n
       },
       heb: {
         translation: globalHeb
+      },
+      rus: {
+        translation: globalRus
       }
     },
     fallbackLng: 'en',

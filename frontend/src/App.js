@@ -106,7 +106,11 @@ function App() {
           </div>
           <div>
             <input type="radio" id="hebrew" name="language" value="heb" onChange={() => changeLanguage('heb')}/>
-            <label>עברית</label>
+            <label>Hebrew</label>
+          </div>
+          <div>
+            <input type="radio" id="russian" name="language" value="rus" onChange={() => changeLanguage('rus')}/>
+            <label>Russian</label>
           </div>
         </div>
         
