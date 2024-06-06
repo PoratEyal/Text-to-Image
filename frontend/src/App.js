@@ -253,7 +253,7 @@ function App() {
           </button>
 
           {counter > 0 &&
-            <div>
+            <div className={styles.counter}>
               {t('labels.amountOfClicks')} {counter}
             </div>
           }

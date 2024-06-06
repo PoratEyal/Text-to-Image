@@ -274,4 +274,10 @@
   grid-column-gap: 35px;
 }
 
+.counter{
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+}
+
   
