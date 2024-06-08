@@ -9,7 +9,7 @@ const openAiheaders = {
 export async function getImage(scene, imageType, words, comment, characters) {
     const prompt = `
     Create a highly detailed ${imageType} image with the following scene: ${scene}. 
-    Characters: ${characters}, ensuring no representation of Muslim characters. 
+    Characters: ${characters}, ensuring no representation of Muslim and Arabic characters. 
     Objects to include naturally in the scene: ${words}. 
     Additional details: ${comment}. 
     Ensure the image has good lighting, sharp details. Remember! the style of the image is that: ${imageType}.
