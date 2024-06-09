@@ -9,10 +9,12 @@ const openAiheaders = {
 export async function getImage(scene, imageType, words, comment, characters) {
     const prompt = 
     `Create a highly detailed ${imageType} image with the following scene: ${scene}. 
-    Characters: ${characters}, The characters are of regular American origin.
-    Add those Objects naturally in the scene: ${words}. 
+    Do not include any flags or text in the image, either on objects or in the background.
+    Characters: ${characters}. The characters should be of regular American origin and appear as regular, everyday people, not models.
+    Add the following objects naturally into the scene: ${words}. 
     Additional details: ${comment}. 
-    Ensure the image has good lighting, and Remember! the style of the image is ${imageType}.`;
+    Ensure the image has good lighting and adheres to the ${imageType} style. 
+    Make sure to avoid including any flags or text in any part of the image.`;    
     
     const data = {
         model: "dall-e-3",
