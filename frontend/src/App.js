@@ -180,7 +180,7 @@ function App() {
                   value={selectedScene} 
                   onChange={(e) => handleSceneChange(e.target.value)}
                 >
-                  <option disabled value="">{t('options.selectScene')}</option>
+                  <option value="">{t('options.selectScene')}</option>
                   {t('options.scenes', { returnObjects: true }).map(scene => (
                     <option key={scene} value={scene}>{scene}</option>
                   ))}
@@ -194,7 +194,7 @@ function App() {
                   value={selectedType} 
                   onChange={(e) => handleTypeChange(e.target.value)}
                 >
-                  <option disabled value="">{t('options.selectType')}</option>
+                  <option value="">{t('options.selectType')}</option>
                   {t('options.types', { returnObjects: true }).map(type => (
                     <option key={type} value={type}>{type}</option>
                   ))}
