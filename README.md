@@ -1,4 +1,3 @@
-```markdown
 # Cognishine AI
 
 ## Overview
