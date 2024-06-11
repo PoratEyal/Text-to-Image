@@ -4,10 +4,15 @@
   gap: 30px;
   height: 90vh;
 }
+.rtl{
+  direction: rtl;
+  margin-right: 50px;
+}
 
 .data_container{
   margin-left: 50px;
   font-family: 'Fredoka', sans-serif;
+  width: fit-content;
 }
 
 .selectDiv{
@@ -41,6 +46,17 @@
   top: 15px;
   left: 15px;
 }
+.lang_div_hebrew{
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}
 
 .freeText{
   position: absolute;
@@ -49,6 +65,16 @@
   display: flex;
   flex-direction: row;
   justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+.freeText_hebrew{
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
   align-items: center;
   gap: 20px;
 }
@@ -117,6 +143,7 @@
   display: flex;
   flex-direction: column;
   justify-content: left;
+  width: fit-content;
 }
 
 .characters_div label{
@@ -233,6 +260,7 @@
   align-items: left;
   margin-top: 25px;
   flex-direction: column;
+  width: fit-content;
 }
 
 .submit_btn{
@@ -278,6 +306,15 @@
   position: absolute;
   right: 10px;
   bottom: 10px;
+}
+.counter_hebrew{
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
 }
 
   

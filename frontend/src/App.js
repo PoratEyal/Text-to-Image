@@ -136,10 +136,12 @@ function App() {
     setFreeText(e.target.value === "true");
   };
 
+  const isRTL = i18n.language === 'heb';
+
   return (
-    <div className={styles.container}>
+    <div className={`${styles.container} ${isRTL ? styles.rtl : ''}`}>
       <div className={styles.data_container}>
-        <div className={styles.lang_div}>
+        <div className={`${styles.lang_div} ${isRTL ? styles.lang_div_hebrew : ''}`}>
           <div>
             <input defaultChecked type="radio" id="english" name="language" value="en" onChange={() => changeLanguage('en')}/>
             <label>English</label>
@@ -154,7 +156,7 @@ function App() {
           </div>
         </div>
         
-        <div className={styles.freeText}>
+        <div className={`${styles.freeText} ${isRTL ? styles.freeText_hebrew : ''}`}>
           <div>
             <input type="radio" name="promptStyle" value="false" checked={!freeText} onChange={changePromptStyle}/>
             <label>{t('text.textClosed')}</label>
@@ -253,7 +255,7 @@ function App() {
           </button>
 
           {counter > 0 &&
-            <div className={styles.counter}>
+            <div className={`${styles.counter} ${isRTL ? styles.counter_hebrew : ''}`}>
               {t('labels.amountOfClicks')} {counter}
             </div>
           }
