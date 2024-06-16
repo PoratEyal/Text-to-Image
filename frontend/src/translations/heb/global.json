@@ -67,5 +67,10 @@
     "writeYourScene": "כתוב את הסצנה שלך כאן",
     "textOpen": "טקסט פתוח",
     "textClosed": "טקסט סגור"
+  },
+  "alert":{
+    "errorTitle": "אנא נסו שנית",
+    "errorText": "קרתה בעיה בעת יצירת התמונות, אנא נסו שנית או לחצו על כפתור הריפרש",
+    "confirmButtonText": "אישור"
   }
 }

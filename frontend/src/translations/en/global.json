@@ -67,5 +67,10 @@
     "writeYourScene": "Write your scene here",
     "textOpen": "Open Text",
     "textClosed": "Closed Text"
+  },
+  "alert":{
+    "errorTitle": "Please try again",
+    "errorText": "There was an issue creating the images, please try again or press the refresh button",
+    "confirmButtonText": "OK"
   }
 }

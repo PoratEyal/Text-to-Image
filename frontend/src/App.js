@@ -6,6 +6,7 @@ import { FaWandMagicSparkles } from "react-icons/fa6";
 import ImageAi from './components/ImageAi/ImageAi';
 import { MdAddReaction } from "react-icons/md";
 import { useTranslation } from 'react-i18next';
+import Swal from 'sweetalert2'
 
 function App() {
   const { t } = useTranslation();
@@ -17,7 +18,6 @@ function App() {
   const [image4, setImage4] = useState(null);
 
   const [startLoading, setStartLoading] = useState(false)
-  const [counter, setCounter] = useState(0)
   
   const [selectedScene, setSelectedScene] = useState('');
   const [selectedType, setSelectedType] = useState('');
@@ -49,7 +49,7 @@ function App() {
 
   // create 4 images from the open text
   const getImageFreeText = async () => {
-    setCounter(prevCounter => prevCounter + 1);
+    //setCounter(prevCounter => prevCounter + 1);
     setImage1(null);
     setImage2(null);
     setImage3(null);
@@ -74,12 +74,19 @@ function App() {
       setImage4(images[3]);
     } catch (error) {
       console.error('Error fetching images:', error);
+      Swal.fire({
+        title: t('alert.errorTitle'),
+        text: t('alert.errorText'),
+        icon: 'error',
+        confirmButtonText: t('alert.confirmButtonText'),
+        confirmButtonColor: '#DC1589'
+      });
+      setStartLoading(false)
     }
   };
 
   // create 4 images from the closed text
   const getImages = async () => {
-    setCounter(prevCounter => prevCounter + 1);
     setImage1(null);
     setImage2(null);
     setImage3(null);
@@ -105,6 +112,14 @@ function App() {
       setImage4(images[3]);
     } catch (error) {
       console.error('Error fetching images:', error);
+      Swal.fire({
+        title: t('alert.errorTitle'),
+        text: t('alert.errorText'),
+        icon: 'error',
+        confirmButtonText: t('alert.confirmButtonText'),
+        confirmButtonColor: '#DC1589'
+      });
+      setStartLoading(false)
     }
   };
 
@@ -253,12 +268,6 @@ function App() {
             <label>{t('buttons.generateLabel')}</label>
             <FaWandMagicSparkles></FaWandMagicSparkles>
           </button>
-
-          {counter > 0 &&
-            <div className={`${styles.counter} ${isRTL ? styles.counter_hebrew : ''}`}>
-              {t('labels.amountOfClicks')} {counter}
-            </div>
-          }
         </div>
 
       </div>
